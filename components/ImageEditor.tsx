@@ -11,6 +11,7 @@ interface ImageEditorProps {
   image: OriginalImage;
   brushSize: number;
   tool: Tool;
+  theme: string;
   onHistoryChange: (state: { canUndo: boolean; canRedo: boolean; }) => void;
 }
 
@@ -21,7 +22,7 @@ export interface ImageEditorRef {
   redo: () => void;
 }
 
-const ImageEditor = forwardRef<ImageEditorRef, ImageEditorProps>(({ image, brushSize, tool, onHistoryChange }, ref) => {
+const ImageEditor = forwardRef<ImageEditorRef, ImageEditorProps>(({ image, brushSize, tool, theme, onHistoryChange }, ref) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const imageCanvasRef = useRef<HTMLCanvasElement>(null);
   const drawingCanvasRef = useRef<HTMLCanvasElement>(null);
@@ -91,7 +92,7 @@ const ImageEditor = forwardRef<ImageEditorRef, ImageEditorProps>(({ image, brush
     } else {
       setBrushColor(primaryColor);
     }
-  }, []);
+  }, [theme]);
 
   // Responsive canvas scaling
   useEffect(() => {
@@ -265,7 +266,7 @@ const ImageEditor = forwardRef<ImageEditorRef, ImageEditorProps>(({ image, brush
     backgroundColor: 'rgba(255, 255, 255, 0.5)',
     borderColor: 'var(--color-text-secondary)',
   } : {
-    backgroundColor: 'var(--color-primary-alpha, rgba(0, 229, 255, 0.3))',
+    backgroundColor: 'var(--color-primary-alpha)',
     borderColor: 'var(--color-primary)',
   };
 

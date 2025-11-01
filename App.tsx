@@ -44,7 +44,7 @@ const App: React.FC = () => {
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       // Don't trigger shortcuts if user is typing in the prompt
-      if (e.target instanceof HTMLTextAreaElement) return;
+      if (e.target instanceof HTMLTextAreaElement || e.target instanceof HTMLInputElement) return;
 
       const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
       const isCtrlKey = isMac ? e.metaKey : e.ctrlKey;
@@ -61,6 +61,12 @@ const App: React.FC = () => {
       } else if (e.key === ']') {
         e.preventDefault();
         setBrushSize(s => Math.min(100, s + 2));
+      } else if (e.key === 'b') {
+        e.preventDefault();
+        setTool('brush');
+      } else if (e.key === 'e') {
+        e.preventDefault();
+        setTool('eraser');
       }
     };
 
@@ -165,6 +171,7 @@ const App: React.FC = () => {
                 brushSize={brushSize}
                 tool={tool}
                 onHistoryChange={handleHistoryChange}
+                theme={theme}
               />
             </div>
 
