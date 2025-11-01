@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AR AI Inpainting Studio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      // Prevents theme flicker on page load
+      if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              background: 'var(--color-background)',
+              surface: 'var(--color-surface)',
+              primary: 'var(--color-primary)',
+              destructive: 'var(--color-destructive)',
+              'text-primary': 'var(--color-text-primary)',
+              'text-secondary': 'var(--color-text-secondary)',
+              'border-color': 'var(--color-border)',
+            },
+          },
+        },
+      }
+    </script>
+    <style>
+      :root {
+        --color-background: #F7F7F7;
+        --color-surface: #FFFFFF;
+        --color-primary: #007BFF;
+        --color-destructive: #DC3545;
+        --color-text-primary: #212529;
+        --color-text-secondary: #6c757d;
+        --color-border: rgba(0, 0, 0, 0.1);
+      }
+
+      .dark {
+        --color-background: #121212;
+        --color-surface: #1E1E1E;
+        --color-primary: #00E5FF;
+        --color-destructive: #FF4757;
+        --color-text-primary: #E0E0E0;
+        --color-text-secondary: #A0A0A0;
+        --color-border: rgba(255, 255, 255, 0.1);
+      }
+      
+      /* For custom cursor */
+      .brush-cursor {
+        cursor: none;
+      }
+      /* Custom range input styles */
+      input[type="range"] {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 100%;
+        height: 8px;
+        background: var(--color-background);
+        border: 1px solid var(--color-border);
+        border-radius: 5px;
+        outline: none;
+        transition: opacity .2s;
+      }
+      input[type="range"]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 20px;
+        height: 20px;
+        background: var(--color-primary);
+        cursor: pointer;
+        border-radius: 50%;
+        border: 2px solid var(--color-surface);
+      }
+      input[type="range"]::-moz-range-thumb {
+        width: 20px;
+        height: 20px;
+        background: var(--color-primary);
+        cursor: pointer;
+        border-radius: 50%;
+        border: 2px solid var(--color-surface);
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.28.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react": "https://aistudiocdn.com/react@^19.2.0"
+  }
+}
+</script>
+</head>
+  <body class="bg-background text-text-primary transition-colors duration-300">
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>

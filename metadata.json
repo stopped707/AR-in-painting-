@@ -1,0 +1,5 @@
+{
+  "name": "AR AI Inpainting Studio",
+  "description": "An application that allows users to upload an image, select an area with a brush tool, and use a text prompt to edit the selected region using the Gemini 2.5 Flash Image model. Features a professional UI with dark and light modes.",
+  "requestFramePermissions": []
+}
